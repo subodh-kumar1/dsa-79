@@ -8,24 +8,24 @@ function findMinPlatforms(arrival, departure) {
     if (!arrival.length || !departure.length) return 0;
 
     // Sort arrival and departure times
-    arrival.sort((a, b) => a - b);
-    departure.sort((a, b) => a - b);
+    arrival.sort((a, b) => a - b); // Sort arrival times
+    departure.sort((a, b) => a - b); // Sort departure times
 
-    let n = arrival.length;
-    let plat_needed = 1, max_platforms = 1;
-    let i = 1, j = 0;
+    let n = arrival.length; // Number of trains
+    let plat_needed = 1, max_platforms = 1; // At least one platform needed
+    let i = 1, j = 0; // Pointers for arrival and departure
 
     while (i < n && j < n) {
         // If next train arrives before the last one departs, need extra platform
         if (arrival[i] <= departure[j]) {
-            plat_needed++;
-            i++;
+            plat_needed++; // New platform needed
+            i++; // Move to next arrival
         } else {
             // Train departs, free a platform
-            plat_needed--;
-            j++;
+            plat_needed--; // Platform freed
+            j++; // Move to next departure
         }
-        max_platforms = Math.max(max_platforms, plat_needed);
+        max_platforms = Math.max(max_platforms, plat_needed); // Update max platforms needed
     }
 
     return max_platforms;

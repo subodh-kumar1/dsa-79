@@ -6,15 +6,15 @@ function maxMeetings(start, end) {
         meetings.push({start: start[i], end: end[i], idx: i});
     }
     // Sort meetings by end time
-    meetings.sort((a, b) => a.end - b.end);
+    meetings.sort((a, b) => a.end - b.end); // Ascending order of end times
 
     let count = 1; // Always select the first meeting
-    let lastEnd = meetings[0].end;
+    let lastEnd = meetings[0].end; // End time of the last selected meeting
 
     for (let i = 1; i < n; i++) {
-        if (meetings[i].start > lastEnd) {
-            count++;
-            lastEnd = meetings[i].end;
+        if (meetings[i].start > lastEnd) { // Non-overlapping meeting
+            count++; // Increment count
+            lastEnd = meetings[i].end; // Update last end time
         }
     }
     return count;

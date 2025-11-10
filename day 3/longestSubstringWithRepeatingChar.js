@@ -5,11 +5,11 @@ function longestSubstringWithoutRepeatingChars(S) {
 
     for (let end = 0; end < S.length; end++) {
         const char = S[end];
-        if (seen.has(char) && seen.get(char) >= start) {
-            start = seen.get(char) + 1;
+        if (seen.has(char) && seen.get(char) >= start) { // Repeating character found
+            start = seen.get(char) + 1; // Move start to one position after the last occurrence
         }
-        seen.set(char, end);
-        maxLen = Math.max(maxLen, end - start + 1);
+        seen.set(char, end); // Update the last seen index of the character
+        maxLen = Math.max(maxLen, end - start + 1); // Update max length
     }
 
     return maxLen;
