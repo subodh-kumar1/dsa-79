@@ -1,35 +1,35 @@
 function solveNQueens(n) {
     const results = [];
-    const board = Array.from({ length: n }, () => '.'.repeat(n));
-    const cols = new Set();
-    const diag1 = new Set();
-    const diag2 = new Set();
+    const board = Array.from({ length: n }, () => '.'.repeat(n)); // Initialize empty board
+    const cols = new Set(); // Columns where queens are placed
+    const diag1 = new Set(); // Major diagonals (row - col)
+    const diag2 = new Set(); // Minor diagonals (row + col)
 
-    function backtrack(row) {
-        if (row === n) {
-            results.push([...board]);
+    function backtrack(row) { // row: current row to place a queen
+        if (row === n) { // All queens are placed
+            results.push([...board]); // Add a copy of the board to results
             return;
         }
-        for (let col = 0; col < n; col++) {
-            if (cols.has(col) || diag1.has(row - col) || diag2.has(row + col)) continue;
+        for (let col = 0; col < n; col++) { // Try placing queen in each column
+            if (cols.has(col) || diag1.has(row - col) || diag2.has(row + col)) continue; // Skip if under attack
             // Place queen
-            board[row] = board[row].substring(0, col) + 'Q' + board[row].substring(col + 1);
-            cols.add(col);
-            diag1.add(row - col);
-            diag2.add(row + col);
+            board[row] = board[row].substring(0, col) + 'Q' + board[row].substring(col + 1); // Update board
+            cols.add(col); // Mark column
+            diag1.add(row - col); // Mark major diagonal
+            diag2.add(row + col); // Mark minor diagonal
 
-            backtrack(row + 1);
+            backtrack(row + 1); // Recurse to next row
 
             // Remove queen
-            board[row] = board[row].substring(0, col) + '.' + board[row].substring(col + 1);
-            cols.delete(col);
-            diag1.delete(row - col);
-            diag2.delete(row + col);
+            board[row] = board[row].substring(0, col) + '.' + board[row].substring(col + 1); // Reset board
+            cols.delete(col); // Unmark column
+            diag1.delete(row - col); // Unmark major diagonal
+            diag2.delete(row + col); // Unmark minor diagonal
         }
     }
 
-    backtrack(0);
-    return results;
+    backtrack(0); // Start backtracking from the first row
+    return results; // Return all valid board configurations
 }
 
 // Example usage:
