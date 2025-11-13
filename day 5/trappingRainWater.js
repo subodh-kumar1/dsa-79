@@ -5,17 +5,17 @@ function trap(height) {
 
     while (left < right) {
         if (height[left] < height[right]) {
-            if (height[left] >= leftMax) {
-                leftMax = height[left];
+            if (height[left] >= leftMax) {  // update left max
+                leftMax = height[left]; // update left max
             } else {
-                water += leftMax - height[left];
+                water += leftMax - height[left]; // accumulate water
             }
             left++;
         } else {
-            if (height[right] >= rightMax) {
-                rightMax = height[right];
+            if (height[right] >= rightMax) { // update right max
+                rightMax = height[right];   // update right max
             } else {
-                water += rightMax - height[right];
+                water += rightMax - height[right]; // accumulate water
             }
             right--;
         }
