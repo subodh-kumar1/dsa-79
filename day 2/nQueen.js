@@ -32,5 +32,25 @@ function solveNQueens(n) {
     return results; // Return all valid board configurations
 }
 
+/*
+    backtracking technique is used to explore all possible placements of queens on the board.
+    template code
+    Time Complexity: O(N!) in the worst case, as we may explore all permutations of queen placements.
+    Space Complexity: O(N) for the recursion stack and the sets used to track columns and diagonals.
+
+    backtracking algorithm template used for any problem involving placing items with constraints
+    base case: all items placed -> record solution
+    for each position:
+        if position is valid:
+            place item
+            recurse to place next item
+            remove item (backtrack)
+
+    backtracking examples:
+    - N-Queens Problem
+    - Sudoku Solver
+    
+*/
+
 // Example usage:
 // console.log(solveNQueens(4));

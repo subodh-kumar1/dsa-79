@@ -61,6 +61,58 @@ function listToArray(head) {
     return arr;
 }
 
+
+// Optimized version without dummy nodes
+function sortLinkedList012(head) {
+    if (!head || !head.next) return head;
+
+    let zeroHead = null, zeroTail = null;
+    let oneHead = null, oneTail = null;
+    let twoHead = null, twoTail = null;
+
+    let curr = head;
+    while (curr) {
+        if (curr.val === 0) {
+            if (!zeroHead) { // First node for 0s
+                zeroHead = curr; // Initialize head
+                zeroTail = curr; // Initialize tail
+            } else {
+                zeroTail.next = curr; // Append to tail
+                zeroTail = zeroTail.next; // Move tail
+            }
+        } else if (curr.val === 1) {
+            if (!oneHead) {
+                oneHead = curr;
+                oneTail = curr;
+            } else {
+                oneTail.next = curr;
+                oneTail = oneTail.next;
+            }
+        } else {
+            if (!twoHead) {
+                twoHead = curr;
+                twoTail = curr;
+            } else {
+                twoTail.next = curr;
+                twoTail = twoTail.next;
+            }
+        }
+        curr = curr.next;
+    }
+    // Connect the three lists
+    if (zeroTail) {
+        zeroTail.next = oneHead ? oneHead : twoHead; // Connect 0s to 1s or 2s
+    }
+    if (oneTail) {
+        oneTail.next = twoHead; // Connect 1s to 2s
+    }
+    if (twoTail) {
+        twoTail.next = null; // End the list
+    }
+
+    return zeroHead ? zeroHead : (oneHead ? oneHead : twoHead); // Return the head of the merged list
+
+}
 // Example usage:
 // let head = arrayToList([1,0,2,0,1]);
 // head = sortLinkedList012(head);

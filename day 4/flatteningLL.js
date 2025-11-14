@@ -1,3 +1,15 @@
+/*
+Flatten a multilevel linked list where each node has two pointers: 'next' and 'child'.
+Each 'next' pointer points to the next node in the same level, and each 'child' pointer points to the head of a sublist.
+The goal is to flatten the list into a single-level sorted linked list using only the 'child' pointers.
+
+Algorithm: 
+1. Define a ListNode class with 'val', 'next', and 'child' properties.
+2. Create a Solution class with methods to merge two sorted lists and to flatten the linked list.
+
+Explanation:
+
+*/
 class ListNode {
     constructor(val = 0, next = null, child = null) {
         this.val = val;

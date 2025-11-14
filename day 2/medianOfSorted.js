@@ -31,12 +31,14 @@ function findMedianSortedArrays(arr1, arr2) {
 function findMedianSortedArraysOptimized(arr1, arr2) {
     if (arr1.length > arr2.length) {
         [arr1, arr2] = [arr2, arr1];
-    }
+    } // ensure arr1 is the smaller array
     const m = arr1.length;
     const n = arr2.length;
-    let left = 0, right = m;
+
+    let left = 0, right = m; // binary search on the smaller array
+
     while (left <= right) {
-        const partitionA = Math.floor((left + right) / 2);
+        const partitionA = Math.floor((left + right) / 2); // Partition index for arr1
         const partitionB = Math.floor((m + n + 1) / 2) - partitionA;
         const maxLeftA = partitionA === 0 ? -Infinity : arr1[partitionA - 1];
         const minRightA = partitionA === m ? Infinity : arr1[partitionA];
