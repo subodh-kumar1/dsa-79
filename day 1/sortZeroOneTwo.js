@@ -1,3 +1,8 @@
+/**
+ * Sorts an array consisting of only 0s, 1s, and 2s in ascending order.
+ * @param {number[]} arr
+ * @return {number[]}
+ */
 function sortZeroOneTwo(arr) {
     const count = [0, 0, 0];
     for (const num of nums) {

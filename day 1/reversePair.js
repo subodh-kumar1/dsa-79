@@ -14,16 +14,16 @@ function reversePairs(nums) {
  * Recursively sorts the array and counts reverse pairs.
  */
 function mergeSortAndCount(nums, left, right) {
-  if (left >= right) return 0;
+  if (left >= right) return 0; // Base case: single element
 
-  const mid = left + Math.floor((right - left) / 2);
+  const mid = left + Math.floor((right - left) / 2); // Find mid index
   let count = 0;
 
   count += mergeSortAndCount(nums, left, mid); //  Divide first half
   count += mergeSortAndCount(nums, mid + 1, right); // Divide second half
   count += countReversePairs(nums, left, mid, right); // Count reverse pairs conquing across halves
 
-  mergeSortedHalves(nums, left, mid, right);
+  mergeSortedHalves(nums, left, mid, right); // Merge the two sorted halves
   return count;
 }
 
@@ -67,6 +67,33 @@ function mergeSortedHalves(nums, left, mid, right) {
   }
 }
 
+/*
+Algotithm Explanation:
+The algorithm uses a modified merge sort to count reverse pairs efficiently. It recursively divides the array into halves, counts reverse pairs across the two halves, and merges them back together in sorted order. The key steps are:
+1. Divide: Recursively split the array into two halves until single elements are reached.
+2. Conquer: Count reverse pairs across the two sorted halves using two pointers.
+3. Merge: Merge the two sorted halves back together.
+
+Algorithm Complexity:
+- Time Complexity: O(n log n), where n is the number of elements in the array. This is due to the divide-and-conquer approach of merge sort.
+- Space Complexity: O(n) for the temporary array used during the merge process.
+
+Algorithm Steps:
+1. Check if the input array is valid and has at least two elements.
+2. Define a recursive function `mergeSortAndCount` to perform the modified merge sort and count reverse pairs.
+3. Define a helper function `countReversePairs` to count reverse pairs across two sorted halves.
+4. Define a helper function `mergeSortedHalves` to merge two sorted halves of the array.
+5. Return the total count of reverse pairs found in the array.
+
+countReversePairs Explanation:
+This function counts the number of reverse pairs (i, j) such that i < j and nums[i] > 2 * nums[j] across two sorted halves of the array. It uses two pointers: one iterating through the left half and another through the right half. For each element in the left half, it advances the pointer in the right half until the condition is violated, counting how many valid j's exist for each i. This approach ensures that we efficiently count reverse pairs without needing a nested loop, maintaining an overall O(n log n) time complexity for the entire algorithm.
+steps:
+1. Initialize a count variable to keep track of reverse pairs.
+2. Use a pointer j to traverse the right half of the array.
+3. For each element in the left half, move the pointer j in the right half as long as the condition nums[i] > 2 * nums[j] holds.
+4. For each valid position of j, increment the count by the number of valid elements found in the right half for the current i.
+5. Return the total count of reverse pairs found across the two halves.
+*/
 
 console.log(reversePairs([]));
 console.log(reversePairs([5]));

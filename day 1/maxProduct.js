@@ -1,3 +1,9 @@
+/**
+ * Finds the contiguous subarray within an array (containing at least one number)
+ * which has the largest product.
+ * @param {number[]} nums
+ * @return {number}
+ */
 function maxProduct(nums) {
     if (!nums.length) return 0;
 
