@@ -14,17 +14,13 @@ function search(nums, target) {
         if (nums[left] === nums[mid] && nums[mid] === nums[right]) {
             left++;
             right--;
-        }
-        // Left half is sorted
-        else if (nums[left] <= nums[mid]) {
+        } else if (nums[left] <= nums[mid]) { // Left half is sorted
             if (nums[left] <= target && target < nums[mid]) {
                 right = mid - 1;
             } else {
                 left = mid + 1;
             }
-        }
-        // Right half is sorted
-        else {
+        }else { // Right half is sorted
             if (nums[mid] < target && target <= nums[right]) {
                 left = mid + 1;
             } else {

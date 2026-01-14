@@ -21,6 +21,19 @@ function combinationSum2(candidates, target) {
     backtrack(0, [], 0);
     return results;
 }
+/*
+Recursion Tree Example:
+candidates = [1,1,2,5,6,7,8], target = 8
+
+                                 []
+               /        |        |        |        |        |        |        \
+             [1]      [1]      [2]      [5]      [6]      [7]      [8]
+          /   \        |        |        |        |        |        |
+       [1,1]  [1,2]   [2,5]   [5,6]   [6,7]   [7,8]   ...
+       /       |
+    [1,1,6]  [1,2,5]
+
+*/
 
 // Example usage:
 console.log(combinationSum2([2, 1, 2, 7, 6, 1, 5], 8)); // [ [1,1,6], [1,2,5], [1,7], [2,6] ]
